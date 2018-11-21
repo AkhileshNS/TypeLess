@@ -17,7 +17,7 @@ public class Main {
         Var o4 = new Var(4);
         Var o5 = new Var(5);
 
-        Var value = Perform.operate("$0 + ($1/$0 + ($2*$1 + $3))", o1, o2, o3, o4, o5);
+        Var value = Perform.operate("$0 + ($1/$0 + ($2*$1 + $3) + $4)", o1, o2, o3, o4, o5);
         Perform.print(value);
     }
 }

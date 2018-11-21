@@ -2,6 +2,7 @@ package com.OnCreators.TypeLess;
 
 public class Perform {
 
+    // Error Defaults
     public static final String STR = "";
     public static final int INT = -1;
     public static final float FLT = -1.0f;
@@ -9,6 +10,7 @@ public class Perform {
     public static final char CHR = 'e';
     public static final Boolean BLN = false;
 
+    // Basic Print Function
     public static void print(Var v) {
         if (v!=null) {
             System.out.println(v.get());
@@ -17,6 +19,7 @@ public class Perform {
         }
     }
 
+    // Var conversion ,operation and check functions
     private static double getDoubleFromVar(Var v) {
         if (v.getType()==1) {
             return (double) v.getInt();
@@ -96,15 +99,24 @@ public class Perform {
         if (obj.getClass() == Double.class) {
             v = new Var((double) obj);
         }
+        if (obj.getClass() == Boolean.class) {
+            v = new Var((Boolean) obj);
+        }
+        if (obj.getClass() == Character.class) {
+            v = new Var((Character) obj);
+        }
+        System.out.println("Object passed is must be one of types : int, float, String, character, Boolean, Double");
         return v;
     }
 
+    // Arithmetic Operation Functions
     public static Var add(Var ...vars) {
         if (vars.length==1) {
             return vars[0];
         }
         if (vars.length>1) {
             if (!isOnlyNumbers(vars) && !isOnlyText(vars)) {
+                System.out.println("All the passed vars must contain only numbers (int,float or double) or only text (String or char).");
                 return null;
             }
 
@@ -115,7 +127,10 @@ public class Perform {
                 }
                 value = operateAndReturn(value, v, "+");
             }
-            if (value==null) {return null;}
+            if (value==null) {
+                System.out.println("Error while performing operation");
+                return null;
+            }
             else {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
@@ -123,6 +138,7 @@ public class Perform {
                 return createVarFromObj(value);
             }
         }
+        System.out.println("Insufficient number of vars passed as arguments");
         return null;
     }
 
@@ -131,11 +147,8 @@ public class Perform {
             return vars[0];
         }
         if (vars.length>1) {
-            int type = vars[0].getType();
-            if (type==5) {
-                return null;
-            }
             if (!isOnlyNumbers(vars)) {
+                System.out.println("All the passed vars must contain only numbers (int, float or double)");
                 return null;
             }
 
@@ -146,14 +159,17 @@ public class Perform {
                 }
                 value = operateAndReturn(value, v, "-");
             }
-            if (value==null) {return null;}
-            else {
+            if (value==null) {
+                System.out.println("Error while performing operation");
+                return null;
+            } else {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
                 return createVarFromObj(value);
             }
         }
+        System.out.println("Insufficient number of vars passed as arguments");
         return null;
     }
 
@@ -162,11 +178,8 @@ public class Perform {
             return vars[0];
         }
         if (vars.length>1) {
-            int type = vars[0].getType();
-            if (type==5) {
-                return null;
-            }
             if (!isOnlyNumbers(vars)) {
+                System.out.println("All the passed vars must contain only numbers (int, float or double)");
                 return null;
             }
 
@@ -177,14 +190,17 @@ public class Perform {
                 }
                 value = operateAndReturn(value, v, "*");
             }
-            if (value==null) {return null;}
-            else {
+            if (value==null) {
+                System.out.println("Error while performing operation");
+                return null;
+            } else {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
                 return createVarFromObj(value);
             }
         }
+        System.out.println("Insufficient number of vars passed as arguments");
         return null;
     }
 
@@ -193,11 +209,8 @@ public class Perform {
             return vars[0];
         }
         if (vars.length>1) {
-            int type = vars[0].getType();
-            if (type==5) {
-                return null;
-            }
             if (!isOnlyNumbers(vars)) {
+                System.out.println("All the passed vars must contain only numbers (int, float or double)");
                 return null;
             }
 
@@ -208,14 +221,17 @@ public class Perform {
                 }
                 value = operateAndReturn(value, v, "/");
             }
-            if (value==null) {return null;}
-            else {
+            if (value==null) {
+                System.out.println("Error while performing operation");
+                return null;
+            } else {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
                 return createVarFromObj(value);
             }
         }
+        System.out.println("Insufficient number of vars passed as arguments");
         return null;
     }
 
@@ -302,10 +318,12 @@ public class Perform {
     public static Var operate(String operation, Var ...vars) {
         String Operation = operation;
         if (!isOnlyNumbers(vars)) {
+            System.out.println("All the passed vars must contain only numbers (int, float or double)");
             return null;
         }
         for (int i=0;i<vars.length;i++) {
             if (!Operation.contains("$" + String.valueOf(i))) {
+                System.out.println("Variables in operation must be equal to the number of variables passed and their indexes must also exist in respect to the variables passed");
                 return null;
             }
             double d = getDoubleFromVar(vars[i]);
