@@ -233,10 +233,10 @@ public class List extends Var {
 
     public Boolean contains(Object obj){
         String argType = Perform.getObjectClass(obj);
-//        if (argType == "List" || argType == "Tuple"){
-//
-//        }
-//        else{
+        if (argType == "List" || argType == "Tuple"){
+
+        }
+        else{
             for (int i = 0; i<length; i++){
                 if (data[i].type()!="List"){
                     if(Objects.equals(data[i].type(), argType)){
@@ -252,7 +252,7 @@ public class List extends Var {
                     }
                 }
             }
-//        }
+        }
         return false;
     }
 
