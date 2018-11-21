@@ -18,7 +18,7 @@ public class Var {
     private String getTypeString(int t) {
         switch (t) {
             case 4: return "double";
-            case 1: return "integer";
+            case 1: return "int";
             case 2: return "char";
             case 3: return "float";
             case -1: return "Unset";

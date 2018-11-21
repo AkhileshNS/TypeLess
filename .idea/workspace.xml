@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73142a92-be0b-4382-8274-70918617fadc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TypeLess/com/OnCreators/TypeLess/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TypeLess/com/OnCreators/TypeLess/Const.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Perform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Perform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Var.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Var.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/OnCreators/TypeLess/var.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,25 +19,27 @@
     <session id="-315242278">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.32" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.36" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="7" />
-          <entry key="java" value="4461" />
-          <entry key="txt" value="278" />
+          <entry key="java" value="7114" />
+          <entry key="txt" value="439" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4461" />
-          <entry key="PLAIN_TEXT" value="285" />
+          <entry key="JAVA" value="7114" />
+          <entry key="PLAIN_TEXT" value="446" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -59,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="306">
+              <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -68,8 +70,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Perform.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+            <state relative-caret-position="340">
+              <caret line="316" column="9" lean-forward="true" selection-start-line="316" selection-start-column="9" selection-end-line="316" selection-end-column="9" />
+              <folding>
+                <element signature="e#6481#6482#0" expanded="true" />
+                <element signature="e#6563#6564#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,12 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Var.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="112" column="5" lean-forward="true" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
-              <folding>
-                <element signature="e#1132#1133#0" expanded="true" />
-                <element signature="e#1174#1175#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -90,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Const.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1785">
+            <state relative-caret-position="1751">
               <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
               <folding>
                 <element signature="e#1128#1129#0" expanded="true" />
@@ -125,10 +127,10 @@
         <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/val.java" />
         <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/var.java" />
-        <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Perform.java" />
-        <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Var.java" />
-        <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Main.java" />
         <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Const.java" />
+        <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Var.java" />
+        <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Perform.java" />
+        <option value="$PROJECT_DIR$/src/com/OnCreators/TypeLess/Main.java" />
       </list>
     </option>
   </component>
@@ -145,7 +147,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -168,10 +169,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542713587089" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542735781259" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -253,7 +255,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25973153" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2671141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -262,13 +264,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32907802" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4986577" visible="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.32907802" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5013423" side_tool="true" weight="0.32907802" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -287,7 +289,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit : completed var, val and started Controller classes" />
     <MESSAGE value="Changed var to Var ,changed it to use Object instead of String, added convertTo function to it and changed Controller to Perform (added print function to print)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed var to Var ,changed it to use Object instead of String, added convertTo function to it and changed Controller to Perform (added print function to print)." />
+    <MESSAGE value="Added Refinements in Code : added toString(), toInt() and similar methods, as well as getInt() and getString() like methods as well" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Refinements in Code : added toString(), toInt() and similar methods, as well as getInt() and getString() like methods as well" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
@@ -296,7 +299,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Const.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
+        <state relative-caret-position="1751">
           <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
           <folding>
             <element signature="e#1128#1129#0" expanded="true" />
@@ -307,26 +310,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Var.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="112" column="5" lean-forward="true" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
-          <folding>
-            <element signature="e#1132#1133#0" expanded="true" />
-            <element signature="e#1174#1175#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Perform.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        <state relative-caret-position="340">
+          <caret line="316" column="9" lean-forward="true" selection-start-line="316" selection-start-column="9" selection-end-line="316" selection-end-column="9" />
+          <folding>
+            <element signature="e#6481#6482#0" expanded="true" />
+            <element signature="e#6563#6564#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/OnCreators/TypeLess/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        <state relative-caret-position="306">
+          <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
         </state>
       </provider>
     </entry>
