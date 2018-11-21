@@ -24,7 +24,7 @@ public class Main {
         obj2.print();
         System.out.println();
 
-        List obj3 = new List(2,"xyz",6.5,false,3);
+        Tuple obj3 = new Tuple(2,"xyz",6.5,false,3);
         obj3.print();
         System.out.println();
 
