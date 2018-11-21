@@ -2,8 +2,8 @@ package com.OnCreators.TypeLess;
 
 public class Var {
 
-    private Object value;
-    private int type = -1;
+    protected Object value;
+    protected int type = -1;
     /*
     -1 - Not Used
     0  - String
@@ -12,15 +12,19 @@ public class Var {
     3  - Float
     4  - Double
     5  - Boolean
+    6  - List
     */
 
     // Utility Functions
-    private String getTypeString(int t) {
+    protected String getTypeString(int t) {
         switch (t) {
             case 4: return "double";
-            case 1: return "int";
+            case 1: return "integer";
             case 2: return "char";
             case 3: return "float";
+            case 6: return "List";
+            case 5: return "boolean";
+            case 0: return "String";
             case -1: return "Unset";
         }
         return "String";
