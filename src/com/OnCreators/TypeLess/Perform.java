@@ -86,27 +86,38 @@ public class Perform {
     }
 
     public static Var createVarFromObj(Object obj) {
-        Var v = null;
         if (obj.getClass() == String.class) {
-            v = new Var((String) obj);
+            return new Var((String) obj);
         }
         if (obj.getClass() == Float.class) {
-            v = new Var((float) obj);
+            return new Var((float) obj);
         }
         if (obj.getClass() == Integer.class) {
-            v = new Var((int) obj);
+            return new Var((int) obj);
         }
         if (obj.getClass() == Double.class) {
-            v = new Var((double) obj);
+            return new Var((double) obj);
         }
         if (obj.getClass() == Boolean.class) {
-            v = new Var((Boolean) obj);
+            return new Var((Boolean) obj);
         }
         if (obj.getClass() == Character.class) {
-            v = new Var((Character) obj);
+            return new Var((Character) obj);
         }
         System.out.println("Object passed is must be one of types : int, float, String, character, Boolean, Double");
-        return v;
+        return null;
+    }
+
+    public static void append(List list, Var v) {
+        if (list==null) {list=new List();}
+        switch (v.getType()) {
+            case 0: list.append(v.getString()); break;
+            case 1: list.append(v.getInt()); break;
+            case 2: list.append(v.getChar()); break;
+            case 3: list.append(v.getFloat()); break;
+            case 4: list.append(v.getDouble()); break;
+            case 5: list.append(v.getBoolean()); break;
+        }
     }
 
     // Arithmetic Operation Functions

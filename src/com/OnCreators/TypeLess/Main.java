@@ -1,6 +1,7 @@
 package com.OnCreators.TypeLess;
 
 import java.lang.*;
+import java.util.Hashtable;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,5 +20,12 @@ public class Main {
 
         Var value = Perform.operate("$0 + ($1/$0 + ($2*$1 + $3) + $4)", o1, o2, o3, o4, o5);
         Perform.print(value);
+
+        Dictionary d1 = new Dictionary("name", "age", "percentile", "usn");
+        d1.setValues("Akhilesh", 20, 84.8, "1BM16IS009");
+        d1.getValues().print();
+        System.out.println("\n" + d1.get("age"));
+
+
     }
 }
