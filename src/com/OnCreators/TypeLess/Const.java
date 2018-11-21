@@ -12,18 +12,19 @@ public class Const {
     3  - Float
     4  - Double
     5  - Boolean
-    6  - List
+    6  - Not Defined
+    7  - Tuple
     */
 
     // Utility Functions
     protected String getTypeString(int t) {
         switch (t) {
-            case 4: return "double";
-            case 1: return "integer";
-            case 2: return "char";
-            case 3: return "float";
-            case 6: return "List";
-            case 5: return "boolean";
+            case 4: return "Double";
+            case 1: return "Integer";
+            case 2: return "Character";
+            case 3: return "Float";
+            case 7: return "Tuple";
+            case 5: return "Boolean";
             case 0: return "String";
             case -1: return "Unset";
         }

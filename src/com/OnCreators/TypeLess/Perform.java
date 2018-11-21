@@ -19,6 +19,38 @@ public class Perform {
         }
     }
 
+    public static String getObjectClass(Object obj){
+        Class cls = obj.getClass();
+        String longName = cls.getName();
+        String result = "";
+        int start = 0;
+        for (int i = 0; i<longName.length(); i++){
+            if (longName.charAt(i) == '.'){
+                start = i;
+            }
+        }
+        for (int i = start+1; i<longName.length(); i++){
+            result = result + longName.charAt(i);
+        }
+        return result;
+    }
+
+    public static String getObjectType(Object obj){
+        String result = getObjectClass(obj);
+        switch (result){
+            case "List" : {List temp = (List) obj;
+                           return temp.type();
+            }
+            case "Tuple" : {Tuple temp = (Tuple) obj;
+                            return temp.type();
+                           }
+            case "Var" : {Var temp = (Var) obj;
+                          return temp.type();
+                         }
+            default : return result;
+        }
+    }
+
     // Var conversion ,operation and check functions
     private static double getDoubleFromVar(Var v) {
         if (v.getType()==1) {
