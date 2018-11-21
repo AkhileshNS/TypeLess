@@ -1,5 +1,7 @@
 package com.OnCreators.TypeLess;
 
+import java.util.Objects;
+
 public class List extends Var {
 
     public List[] data;
@@ -12,8 +14,57 @@ public class List extends Var {
         type = 6;
     }
 
+    public List(Object ... args){
+        length = args.length;
+        data = new List[args.length];
+        length = args.length;
+        type = 6;
+        for(int i = 0; i<args.length; i++){
+            if (args[i] == null) {
+                data[i] = null;
+            }
+            else {
+                switch (Perform.getObjectClass(args[i])){
+                    case "String" : {String str = (String) args[i];
+                        data[i] = new List(str);
+                        break;
+                    }
+                    case "Integer" : {int x = (int) args[i];
+                        data[i] = new List(x);
+                        break;
+                    }
+                    case "Character" : {char c = (char) args[i];
+                        data[i] = new List(c);
+                        break;
+                    }
+                    case "Float" : {float f = (float) args[i];
+                        data[i] = new List(f);
+                        break;
+                    }
+                    case "Double" : {double d = (double) args[i];
+                        data[i] = new List(d);
+                        break;
+                    }
+                    case "Boolean" : {boolean b = (boolean) args[i];
+                        data[i] = new List(b);
+                        break;
+                    }
+                }
+            }
+        }
+
+    }
+
     public int length() {
         return length;
+    }
+
+    protected List(char i){
+        super(i);
+    }
+
+    protected List(float i){
+        super(i);
     }
 
     protected List(int i){
@@ -178,6 +229,31 @@ public class List extends Var {
             }
         }
         System.out.print(" ]");
+    }
+
+    public Boolean contains(Object obj){
+        String argType = Perform.getObjectClass(obj);
+//        if (argType == "List" || argType == "Tuple"){
+//
+//        }
+//        else{
+            for (int i = 0; i<length; i++){
+                if (data[i].type()!="List"){
+                    if(Objects.equals(data[i].type(), argType)){
+                        switch (argType){
+                            case "Double" : {return (double) data[i].value == (double) obj;}
+                            case "Integer" : {return (int) data[i].value == (int) obj;}
+                            case "String" : {return (String) data[i].value == (String) obj;}
+                            case "Boolean" : {return (boolean) data[i].value == (boolean) obj;}
+                            case "Float" : {return (float) data[i].value == (float) obj;}
+                            case "Character" : {return (char) data[i].value == (char) obj;}
+                            default : return false;
+                        }
+                    }
+                }
+            }
+//        }
+        return false;
     }
 
 }
