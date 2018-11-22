@@ -25,6 +25,7 @@ public class Const {
             case 3: return "Float";
             case 7: return "Tuple";
             case 5: return "Boolean";
+            case 8: return Perform.getObjectType(value);
             case 0: return "String";
             case -1: return "Unset";
         }
@@ -33,29 +34,47 @@ public class Const {
 
     // Constructors
     public Const() {}
-    public Const(String value) {
-        this.value = value;
-        type = 0;
-    }
-    public Const(int value) {
-        this.value = value;
-        type = 1;
-    }
-    public Const(char value) {
-        this.value = value;
-        type = 2;
-    }
-    public Const(float value) {
-        this.value = value;
-        type = 3;
-    }
-    public Const(double value) {
-        this.value = value;
-        type = 4;
-    }
-    public Const(Boolean value) {
-        this.value = value;
-        type = 5;
+    public Const (Object value) {
+        if (Perform.getObjectClass(value)=="List" || Perform.getObjectClass(value)=="Var"){
+            System.out.println("Mutable data type in Const not allowed!");
+            return;
+        }
+        switch (Perform.getObjectClass(value)){
+            case "String" : {
+                this.value = value;
+                type = 0;
+                break;
+            }
+            case "Integer" : {
+                this.value = value;
+                type = 1;
+                break;
+            }
+            case "Float" : {
+                this.value = value;
+                type = 3;
+                break;
+            }
+            case "Character" : {
+                this.value = value;
+                type = 2;
+                break;
+            }
+            case "Double" : {
+                this.value = value;
+                type = 4;
+                break;
+            }
+            case "Boolean" : {
+                this.value = value;
+                type = 5;
+                break;
+            }
+            default: {
+                this.value = value;
+                type = 8;
+            }
+        }
     }
 
     // getters

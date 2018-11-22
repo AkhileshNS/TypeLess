@@ -47,6 +47,9 @@ public class Perform {
             case "Var" : {Var temp = (Var) obj;
                           return temp.type();
                          }
+            case "Const" : {Const temp = (Const) obj;
+                            return temp.type();
+                           }
             default : return result;
         }
     }
@@ -65,13 +68,13 @@ public class Perform {
     private static Object operateAndReturn(Object obj, Var v, String check) {
         Object value = null;
         if (obj!=null) {
-            switch (v.type()) {
-                case "String":
+            switch (v.getType()) {
+                case 0:
                     if (check.equals("+")) {
                         value = obj + v.getString();
                     }
                     break;
-                case "double":
+                case 4:
                     switch (check) {
                         case "+":
                             value = (double) obj + v.getDouble();
@@ -87,7 +90,7 @@ public class Perform {
                             break;
                     }
                     break;
-                case "char":
+                case 2:
                     if (check.equals("+")) {
                         value = obj + String.valueOf(v.getChar());
                     }
@@ -115,6 +118,16 @@ public class Perform {
             }
         }
         return true;
+    }
+
+    public static Boolean isDefaultDataTypes(Var v) {
+        if (v.getType()==0) {return true;}
+        if (v.getType()==1) {return true;}
+        if (v.getType()==2) {return true;}
+        if (v.getType()==3) {return true;}
+        if (v.getType()==4) {return true;}
+        if (v.getType()==5) {return true;}
+        return false;
     }
 
     public static Var createVarFromObj(Object obj) {

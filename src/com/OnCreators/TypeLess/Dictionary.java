@@ -1,48 +1,52 @@
 package com.OnCreators.TypeLess;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Dictionary {
 
-    HashMap<Object, Object> kv;
-    List keys;
+    HashMap<Object, Object> data = null;
+    ArrayList<Object> keys = null;
 
     public Dictionary(Object ...objects) {
-        kv = new HashMap<>();
-        keys = new List();
-        for (Object o: objects) {
-            Perform.append(keys,Perform.createVarFromObj(o));
-            kv.put(o, null);
+        data = new HashMap<>();
+        keys = new ArrayList<>();
+
+        for (Object o : objects) {
+            keys.add(o);
+            data.put(o, null);
         }
     }
 
     public void setValues(Object ...objects) {
-        for (int i=0; i<keys.length(); i++) {
-            kv.put(keys.data[i], objects[i]);
+        if (objects.length<keys.size()+1) {
+            for (int i=0; i<objects.length; i++) {
+                data.put(keys.get(i), objects[i]);
+            }
         }
     }
 
     public List getValues() {
         List values = new List();
-        for (int i=0; i<keys.length(); i++) {
-            Perform.append(values ,Perform.createVarFromObj(kv.get(keys.data[i])));
+        for (int i=0; i<keys.size(); i++) {
+            Perform.append(values, Perform.createVarFromObj(data.get(keys.get(i))));
         }
         return values;
     }
 
-    public void set(Object key, Object value) {
-        if (key!=null) {
-            if (Arrays.asList(keys.data).contains(key)) {
-                kv.put(key, value);
+    public void set(Object k, Object v) {
+        if (k!=null) {
+            if (!keys.contains(k)) {
+                keys.add(k);
             }
+            data.put(k, v);
         }
     }
 
-    public Object get(Object key) {
-        if (key!=null) {
-            if (Arrays.asList(keys.data).contains(key)) {
-                return key;
+    public Object get(Object k) {
+        if (k!=null) {
+            if (keys.contains(k)) {
+                return data.get(keys.get(keys.indexOf(k)));
             }
         }
         return null;
