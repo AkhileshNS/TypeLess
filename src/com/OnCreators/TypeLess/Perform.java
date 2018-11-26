@@ -22,6 +22,17 @@ public class Perform {
     }
 
     //==================================================================================================================
+    // Extend Feature
+    public static List extend(Object ...objs) {
+        final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
+        List values = new List(extendCheck);
+        for (Object o: objs) {
+            values.append(o);
+        }
+        return values;
+    }
+
+    //==================================================================================================================
     // Arithmetic Operations
     private static double getDoubleFromVar(Var v) {
         if (v.getType()==1) {

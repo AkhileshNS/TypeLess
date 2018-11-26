@@ -7,6 +7,7 @@ public class List {
     public Var[] data;
     private int size;
     private int length;
+    private final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
 
     //==================================================================================================================
     // Constructors
@@ -18,6 +19,7 @@ public class List {
 
     public List(Var[] vars) {
         length = vars.length;
+        size = length;
         data = new Var[length];
         for (int i = 0; i<vars.length; i++) {
             if (vars[i]==null) {
@@ -30,6 +32,7 @@ public class List {
 
     public List(Const[] consts) {
         length = consts.length;
+        size = length;
         data = new Var[length];
         for (int i = 0; i<consts.length; i++) {
             if (consts[i]==null) {
@@ -42,6 +45,7 @@ public class List {
 
     public List(Object ... args){
         length = args.length;
+        size = length;
         data = new Var[length];
         for(int i = 0; i<args.length; i++){
             if (args[i] == null) {

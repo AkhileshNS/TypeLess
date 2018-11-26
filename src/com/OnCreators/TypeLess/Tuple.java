@@ -6,6 +6,7 @@ public class Tuple {
     // internal class Variables
     public Const[] data;
     private int length;
+    private final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
 
     //==================================================================================================================
     // Constructors
