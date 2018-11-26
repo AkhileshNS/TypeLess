@@ -1,9 +1,9 @@
 package com.OnCreators.TypeLess;
 
-import sun.misc.Perf;
-
 public class Var {
 
+    //==================================================================================================================
+    // internal class variables
     protected Object value;
     protected int type = -1;
     /*
@@ -14,31 +14,51 @@ public class Var {
     3  - Float
     4  - Double
     5  - Boolean
-    6  - List
-    7  - Not Defined
-    8  - Custom class
+    6  - Custom class
     */
 
+    //==================================================================================================================
     // Utility Functions
     protected String getTypeString(int t) {
         switch (t) {
-            case 4: return "Double";
+            case -1: return "Unset";
+            case 0: return "String";
             case 1: return "Integer";
             case 2: return "Character";
             case 3: return "Float";
-            case 6: return "List";
+            case 4: return "Double";
             case 5: return "Boolean";
-            case 0: return "String";
-            case 8: return Perform.getObjectType(value);
-            case -1: return "Unset";
+            case 6: return value.getClass().getSimpleName();
         }
         return "String";
     }
 
+    public Boolean isPrimitive() {
+        if (type==0 || type==1 || type==2 || type==3 || type==4 || type==5) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isNumbers() {
+        if (type==1 || type==3 || type==4) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isText() {
+        if (type==0 || type==2) {
+            return true;
+        }
+        return false;
+    }
+
+    //==================================================================================================================
     // Constructors
     public Var() {}
     public Var (Object value) {
-        switch (Perform.getObjectClass(value)){
+        switch (value.getClass().getSimpleName()){
             case "String" : {
                 this.value = value;
                 type = 0;
@@ -49,14 +69,14 @@ public class Var {
                 type = 1;
                 break;
             }
-            case "Float" : {
-                this.value = value;
-                type = 3;
-                break;
-            }
             case "Character" : {
                 this.value = value;
                 type = 2;
+                break;
+            }
+            case "Float" : {
+                this.value = value;
+                type = 3;
                 break;
             }
             case "Double" : {
@@ -70,36 +90,25 @@ public class Var {
                 break;
             }
             default: {
-                this.value = value;
-                type = 8;
+                if (!value.getClass().getSimpleName().equals("Var") && !value.getClass().getSimpleName().equals("Const")) {
+                    this.value = value;
+                    type = 6;
+                } else {
+                    if (value.getClass().getSimpleName().equals("Var")) {
+                        Var v = (Var) value;
+                        this.value = v.get();
+                        type = v.getType();
+                    } else {
+                        Const c = (Const) value;
+                        this.value = c.get();
+                        type = c.getType();
+                    }
+                }
             }
         }
     }
-//    public Var(String value) {
-//        this.value = value;
-//        type = 0;
-//    }
-//    public Var(int value) {
-//        this.value = value;
-//        type = 1;
-//    }
-//    public Var(char value) {
-//        this.value = value;
-//        type = 2;
-//    }
-//    public Var(float value) {
-//        this.value = value;
-//        type = 3;
-//    }
-//    public Var(double value) {
-//        this.value = value;
-//        type = 4;
-//    }
-//    public Var(Boolean value) {
-//        this.value = value;
-//        type = 5;
-//    }
 
+    //==================================================================================================================
     // getters
     public int getType() {
         return type;
@@ -159,32 +168,60 @@ public class Var {
         }
     }
 
+    //==================================================================================================================
     // setters
-    public void set(String value) {
-        this.value = value;
-        type = 0;
-    }
-    public void set(int value) {
-        this.value = value;
-        type = 1;
-    }
-    public void set(char value) {
-        this.value = value;
-        type = 2;
-    }
-    public void set(float value) {
-        this.value = value;
-        type = 3;
-    }
-    public void set(double value) {
-        this.value = value;
-        type = 4;
-    }
-    public void set(Boolean value) {
-        this.value = value;
-        type = 5;
+    public void set(Object value) {
+        switch (value.getClass().getSimpleName()){
+            case "String" : {
+                this.value = value;
+                type = 0;
+                break;
+            }
+            case "Integer" : {
+                this.value = value;
+                type = 1;
+                break;
+            }
+            case "Character" : {
+                this.value = value;
+                type = 2;
+                break;
+            }
+            case "Float" : {
+                this.value = value;
+                type = 3;
+                break;
+            }
+            case "Double" : {
+                this.value = value;
+                type = 4;
+                break;
+            }
+            case "Boolean" : {
+                this.value = value;
+                type = 5;
+                break;
+            }
+            default: {
+                if (!value.getClass().getSimpleName().equals("Var") && !value.getClass().getSimpleName().equals("Const")) {
+                    this.value = value;
+                    type = 6;
+                } else {
+                    if (value.getClass().getSimpleName().equals("Var")) {
+                        Var v = (Var) value;
+                        this.value = v.get();
+                        type = v.getType();
+                    } else {
+                        Const c = (Const) value;
+                        this.value = c.get();
+                        type = c.getType();
+                    }
+                }
+            }
+        }
     }
 
+    //==================================================================================================================
     // Convertors
     public String toString() {
         int Type = type;
@@ -396,5 +433,6 @@ public class Var {
             }
         } else {System.out.println("The variable has not been set to any value");}
     }
+    //==================================================================================================================
 
 }

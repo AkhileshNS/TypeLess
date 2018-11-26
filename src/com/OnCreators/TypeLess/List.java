@@ -1,225 +1,81 @@
 package com.OnCreators.TypeLess;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-import sun.misc.Perf;
+public class List {
 
-import java.util.Objects;
-
-public class List extends Var {
-
-    public List[] data;
+    //==================================================================================================================
+    // internal class Variables
+    public Var[] data;
     private int size;
     private int length;
+
+    //==================================================================================================================
+    // Constructors
     public List(){
         size = 5;
         length = 0;
-        data = new List[5];
-        type = 6;
+        data = new Var[5];
+    }
+
+    public List(Var[] vars) {
+        length = vars.length;
+        data = new Var[length];
+        for (int i = 0; i<vars.length; i++) {
+            if (vars[i]==null) {
+                data[i] = null;
+            } else {
+                data[i] = new Var(vars[i].get());
+            }
+        }
+    }
+
+    public List(Const[] consts) {
+        length = consts.length;
+        data = new Var[length];
+        for (int i = 0; i<consts.length; i++) {
+            if (consts[i]==null) {
+                data[i] = null;
+            } else {
+                data[i] = new Var(consts[i].get());
+            }
+        }
     }
 
     public List(Object ... args){
         length = args.length;
-        data = new List[args.length];
-        length = args.length;
-        type = 6;
+        data = new Var[length];
         for(int i = 0; i<args.length; i++){
             if (args[i] == null) {
                 data[i] = null;
-            }
-            else {
-                switch (Perform.getObjectClass(args[i])){
-                    case "String" : {String str = (String) args[i];
-                        data[i] = new List(str);
-                        break;
-                    }
-                    case "Integer" : {int x = (int) args[i];
-                        data[i] = new List(x);
-                        break;
-                    }
-                    case "Character" : {char c = (char) args[i];
-                        data[i] = new List(c);
-                        break;
-                    }
-                    case "Float" : {float f = (float) args[i];
-                        data[i] = new List(f);
-                        break;
-                    }
-                    case "Double" : {double d = (double) args[i];
-                        data[i] = new List(d);
-                        break;
-                    }
-                    case "Boolean" : {boolean b = (boolean) args[i];
-                        data[i] = new List(b);
-                        break;
-                    }
-                }
+            } else {
+                data[i] = new Var(args[i]);
             }
         }
-
     }
-
+    //==================================================================================================================
+    // List Operations
     public int length() {
         return length;
     }
 
-    protected List(char i){
-        super(i);
-    }
+    public void append(Object i) {
 
-    protected List(float i){
-        super(i);
-    }
-
-    protected List(int i){
-        super(i);
-    }
-
-    protected List(double i){
-        super(i);
-    }
-
-    protected List(boolean i){
-        super(i);
-    }
-
-    protected List(String i){
-        super(i);
-    }
-
-    public void append(int i){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
-            data = temp;
-        }
-        data[length] = new List(i);
-        length++;
-    }
-
-    public void append(char i){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
-            data = temp;
-        }
-        data[length] = new List(i);
-        length++;
-    }
-
-    public void append(float i){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
-            data = temp;
-        }
-        data[length] = new List(i);
-        length++;
-    }
-
-    public void append(double i){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
-            data = temp;
-        }
-        data[length] = new List(i);
-        length++;
-    }
-
-    public void append(String i){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
-            data = temp;
-        }
-        data[length] = new List(i);
-        length++;
-    }
-
-    public void append(Boolean i){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
-            data = temp;
-        }
-        data[length] = new List(i);
-        length++;
-    }
-
-    public void append(List obj){
-        if (length == size){
-            List temp[] = new List[size*2];
-            size = size*2;
-            for (int j = 0; j<size; j++) {
-                temp[j] = data[j];
-            }
+        if (length == size) {
+            Var[] temp = new Var[size * 2];
+            size = size * 2;
+            if (length >= 0) System.arraycopy(data, 0, temp, 0, length);
             data = temp;
         }
 
-        data[length] = new List();
-
-        for (int i = 0; i<obj.length();i++){
-            if (obj.data[i].type==6){
-                data[length].append(obj.data[i]);
-            }
-            else{
-                switch(obj.data[i].type){
-                    case 0 : {String str = (String) obj.data[i].get();
-                        data[length].append(str);
-                        break;
-                    }
-                    case 1 : {int x = (int) obj.data[i].get();
-                        data[length].append(x);
-                        break;
-                    }
-                    case 2 : {char c = (char) obj.data[i].get();
-                        data[length].append(c);
-                        break;
-                    }
-                    case 3 : {float f = (float) obj.data[i].get();
-                        data[length].append(f);
-                        break;
-                    }
-                    case 4 : {double d = (double) obj.data[i].get();
-                        data[length].append(d);
-                        break;
-                    }
-                    case 5 : {boolean b = (boolean) obj.data[i].get();
-                        data[length].append(b);
-                        break;
-                    }
-
-                }
-            }
-        }
-
-
+        data[length] = new Var(i);
         length++;
     }
 
     public void print(){
         System.out.print("[");
         for (int i=0; i<length; i++){
-            if (data[i].type==6){
-                data[i].print();
+            if (data[i].get().getClass().getSimpleName().equals("List")){
+                List l = (List) data[i].get();
+                l.print();
             }
             else if (data[i].type==0){
                 System.out.print(" \""+data[i].get()+"\"");
@@ -231,25 +87,49 @@ public class List extends Var {
                 System.out.print(",");
             }
         }
-        System.out.print(" ]\n");
+        System.out.print(" ]");
+    }
+
+    public Boolean isPrimitives() {
+        for (Var v: data) {
+            if (!v.isPrimitive()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean isNumbers() {
+        for (Var v: data) {
+            if (!v.isNumbers()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean isText() {
+        for (Var v: data) {
+            if (!v.isText()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Boolean contains(Object obj){
-        for (Var v : data) {
-            if (v!=null && Perform.isDefaultDataTypes(v)) {
-                if (obj.equals(v.get())) {return true;}
-            }
-        }
-        return false;
+        int result = indexOf(obj);
+        return result != -1;
     }
 
     public int indexOf(Object obj) {
         for (int i=0; i<length; i++) {
-            if (data[i]!=null && Perform.isDefaultDataTypes(data[i])) {
+            if (data[i]!=null && new Var(obj).isPrimitive()) {
                 if (obj.equals(data[i].get())) {return i;}
             }
         }
         return -1;
     }
+    //==================================================================================================================
 
 }

@@ -1,84 +1,62 @@
 package com.OnCreators.TypeLess;
 
-import java.util.Objects;
+public class Tuple {
 
-public class Tuple extends Const{
-    public Tuple[] data;
+    //==================================================================================================================
+    // internal class Variables
+    public Const[] data;
     private int length;
-    public Tuple(Object ... args){
+
+    //==================================================================================================================
+    // Constructors
+    public Tuple(Var[] vars) {
+        length = vars.length;
+        data = new Const[length];
+        for (int i = 0; i<vars.length; i++) {
+            if (vars[i]==null) {
+                data[i] = null;
+            } else {
+                data[i] = new Const(vars[i]);
+            }
+        }
+    }
+
+    public Tuple(Const[] consts) {
+        length = consts.length;
+        data = new Const[length];
+        for (int i = 0; i<consts.length; i++) {
+            if (consts[i]==null) {
+                data[i] = null;
+            } else {
+                data[i] = new Const(consts[i]);
+            }
+        }
+    }
+
+    public Tuple(Object ...args) {
         length = args.length;
-        data = new Tuple[args.length];
-        type = 7;
-        for(int i = 0; i<args.length; i++){
+        data = new Const[args.length];
+        for (int i = 0; i < args.length; i++) {
             if (args[i] == null) {
                 data[i] = null;
+            } else {
+                data[i] = new Const(args[i]);
             }
-            else {
-                switch (Perform.getObjectClass(args[i])){
-                    case "String" : {String str = (String) args[i];
-                                     data[i] = new Tuple(str);
-                                     break;
-                                    }
-                    case "Integer" : {int x = (int) args[i];
-                                      data[i] = new Tuple(x);
-                                      break;
-                                     }
-                    case "Character" : {char c = (char) args[i];
-                                        data[i] = new Tuple(c);
-                                        break;
-                                       }
-                    case "Float" : {float f = (float) args[i];
-                                    data[i] = new Tuple(f);
-                                    break;
-                                   }
-                    case "Double" : {double d = (double) args[i];
-                                     data[i] = new Tuple(d);
-                                     break;
-                                    }
-                    case "Boolean" : {boolean b = (boolean) args[i];
-                                      data[i] = new Tuple(b);
-                                      break;
-                                     }
-                    }
-                }
-            }
-
         }
+    }
 
+    //==================================================================================================================
+    // Tuple Operations
     public int length() {
         return length;
     }
-
-    protected Tuple(char i){
-        super(i);
-    }
-
-    protected Tuple(float i){
-        super(i);
-    }
-
-    protected Tuple(int i){
-        super(i);
-    }
-
-    protected Tuple(double i){
-        super(i);
-    }
-
-    protected Tuple(boolean i){
-        super(i);
-    }
-
-    protected Tuple(String i){
-        super(i);
-    }
-
 
     public void print(){
         System.out.print("(");
         for (int i=0; i<length; i++){
             if (data[i].type==7){
-                data[i].print();
+                Tuple objs = (Tuple) data[i].get();
+                objs.print();
             }
             else if (data[i].type==0){
                 System.out.print(" \""+data[i].get()+"\"");
@@ -93,31 +71,45 @@ public class Tuple extends Const{
         System.out.print(" )");
     }
 
-    public Boolean contains(Object obj){//should i kick you out rn?
-        //No let me see all your hidden secrets in the laptop first
-        //
-        String argType = Perform.getObjectClass(obj);
-        if (argType == "List" || argType == "Tuple"){
-
-        }
-        else{
-            for (int i = 0; i<length; i++){
-                if (data[i].type()!="List"){
-                    if(Objects.equals(data[i].type(), argType)){
-                        switch (argType){
-                            case "Double" : {return (double) data[i].value == (double) obj;}
-                            case "Integer" : {return (int) data[i].value == (int) obj;}
-                            case "String" : {return (String) data[i].value == (String) obj;}
-                            case "Boolean" : {return (boolean) data[i].value == (boolean) obj;}
-                            case "Float" : {return (float) data[i].value == (float) obj;}
-                            case "Character" : {return (char) data[i].value == (char) obj;}
-                            default : return false;
-                        }
-                    }
-                }
+    public Boolean isPrimitives() {
+        for (Const v: data) {
+            if (!v.isPrimitive()) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
+    public Boolean isNumbers() {
+        for (Const v: data) {
+            if (!v.isNumbers()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean isText() {
+        for (Const v: data) {
+            if (!v.isText()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean contains(Object obj){
+        int result = indexOf(obj);
+        return result != -1;
+    }
+
+    public int indexOf(Object obj) {
+        for (int i=0; i<length; i++) {
+            if (data[i]!=null && new Var(obj).isPrimitive()) {
+                if (obj.equals(data[i].get())) {return i;}
+            }
+        }
+        return -1;
+    }
+    //==================================================================================================================
 }

@@ -2,6 +2,7 @@ package com.OnCreators.TypeLess;
 
 public class Perform {
 
+    //==================================================================================================================
     // Error Defaults
     public static final String STR = "";
     public static final int INT = -1;
@@ -10,6 +11,7 @@ public class Perform {
     public static final char CHR = 'e';
     public static final Boolean BLN = false;
 
+    //==================================================================================================================
     // Basic Print Function
     public static void print(Var v) {
         if (v!=null) {
@@ -19,42 +21,8 @@ public class Perform {
         }
     }
 
-    public static String getObjectClass(Object obj){
-        Class cls = obj.getClass();
-        String longName = cls.getName();
-        String result = "";
-        int start = 0;
-        for (int i = 0; i<longName.length(); i++){
-            if (longName.charAt(i) == '.'){
-                start = i;
-            }
-        }
-        for (int i = start+1; i<longName.length(); i++){
-            result = result + longName.charAt(i);
-        }
-        return result;
-    }
-
-    public static String getObjectType(Object obj){
-        String result = getObjectClass(obj);
-        switch (result){
-            case "List" : {List temp = (List) obj;
-                           return temp.type();
-            }
-            case "Tuple" : {Tuple temp = (Tuple) obj;
-                            return temp.type();
-                           }
-            case "Var" : {Var temp = (Var) obj;
-                          return temp.type();
-                         }
-            case "Const" : {Const temp = (Const) obj;
-                            return temp.type();
-                           }
-            default : return result;
-        }
-    }
-
-    // Var conversion ,operation and check functions
+    //==================================================================================================================
+    // Arithmetic Operations
     private static double getDoubleFromVar(Var v) {
         if (v.getType()==1) {
             return (double) v.getInt();
@@ -102,76 +70,13 @@ public class Perform {
         return value;
     }
 
-    private static Boolean isOnlyNumbers(Var[] vars) {
-        for (Var v: vars) {
-            if (v.getType()==0 || v.getType()==2 || v.getType()==5) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static Boolean isOnlyText(Var[] vars) {
-        for (Var v: vars) {
-            if (v.getType()==1 || v.getType()==3 || v.getType()==4 || v.getType()==5) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static Boolean isDefaultDataTypes(Var v) {
-        if (v.getType()==0) {return true;}
-        if (v.getType()==1) {return true;}
-        if (v.getType()==2) {return true;}
-        if (v.getType()==3) {return true;}
-        if (v.getType()==4) {return true;}
-        if (v.getType()==5) {return true;}
-        return false;
-    }
-
-    public static Var createVarFromObj(Object obj) {
-        if (obj.getClass() == String.class) {
-            return new Var((String) obj);
-        }
-        if (obj.getClass() == Float.class) {
-            return new Var((float) obj);
-        }
-        if (obj.getClass() == Integer.class) {
-            return new Var((int) obj);
-        }
-        if (obj.getClass() == Double.class) {
-            return new Var((double) obj);
-        }
-        if (obj.getClass() == Boolean.class) {
-            return new Var((Boolean) obj);
-        }
-        if (obj.getClass() == Character.class) {
-            return new Var((Character) obj);
-        }
-        System.out.println("Object passed is must be one of types : int, float, String, character, Boolean, Double");
-        return null;
-    }
-
-    public static void append(List list, Var v) {
-        if (list==null) {list=new List();}
-        switch (v.getType()) {
-            case 0: list.append(v.getString()); break;
-            case 1: list.append(v.getInt()); break;
-            case 2: list.append(v.getChar()); break;
-            case 3: list.append(v.getFloat()); break;
-            case 4: list.append(v.getDouble()); break;
-            case 5: list.append(v.getBoolean()); break;
-        }
-    }
-
     // Arithmetic Operation Functions
     public static Var add(Var ...vars) {
         if (vars.length==1) {
             return vars[0];
         }
         if (vars.length>1) {
-            if (!isOnlyNumbers(vars) && !isOnlyText(vars)) {
+            if (!(new List(vars).isNumbers()) && !(new List(vars).isText())) {
                 System.out.println("All the passed vars must contain only numbers (int,float or double) or only text (String or char).");
                 return null;
             }
@@ -191,7 +96,7 @@ public class Perform {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
-                return createVarFromObj(value);
+                return new Var(value);
             }
         }
         System.out.println("Insufficient number of vars passed as arguments");
@@ -203,7 +108,7 @@ public class Perform {
             return vars[0];
         }
         if (vars.length>1) {
-            if (!isOnlyNumbers(vars)) {
+            if (!(new List(vars).isNumbers())) {
                 System.out.println("All the passed vars must contain only numbers (int, float or double)");
                 return null;
             }
@@ -222,7 +127,7 @@ public class Perform {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
-                return createVarFromObj(value);
+                return new Var(value);
             }
         }
         System.out.println("Insufficient number of vars passed as arguments");
@@ -234,7 +139,7 @@ public class Perform {
             return vars[0];
         }
         if (vars.length>1) {
-            if (!isOnlyNumbers(vars)) {
+            if (!(new List(vars).isNumbers())) {
                 System.out.println("All the passed vars must contain only numbers (int, float or double)");
                 return null;
             }
@@ -253,7 +158,7 @@ public class Perform {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
-                return createVarFromObj(value);
+                return new Var(value);
             }
         }
         System.out.println("Insufficient number of vars passed as arguments");
@@ -265,7 +170,7 @@ public class Perform {
             return vars[0];
         }
         if (vars.length>1) {
-            if (!isOnlyNumbers(vars)) {
+            if (!(new List(vars).isNumbers())) {
                 System.out.println("All the passed vars must contain only numbers (int, float or double)");
                 return null;
             }
@@ -284,7 +189,7 @@ public class Perform {
                 if (value.getClass() == Double.class && (double) value == Math.round((double) value)) {
                     value = (int) (double) value;
                 }
-                return createVarFromObj(value);
+                return new Var(value);
             }
         }
         System.out.println("Insufficient number of vars passed as arguments");
@@ -373,7 +278,7 @@ public class Perform {
 
     public static Var operate(String operation, Var ...vars) {
         String Operation = operation;
-        if (!isOnlyNumbers(vars)) {
+        if (!(new List(vars).isNumbers())) {
             System.out.println("All the passed vars must contain only numbers (int, float or double)");
             return null;
         }
@@ -391,4 +296,5 @@ public class Perform {
         }
         return new Var(d);
     }
+    //==================================================================================================================
 }

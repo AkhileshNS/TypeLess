@@ -2,6 +2,8 @@ package com.OnCreators.TypeLess;
 
 public class Const {
 
+    //==================================================================================================================
+    // internal class Variables
     protected Object value;
     protected int type = -1;
     /*
@@ -12,34 +14,61 @@ public class Const {
     3  - Float
     4  - Double
     5  - Boolean
-    6  - Not Defined
-    7  - Tuple
+    6  - List
+    7  - Not Defined
+    8  - Custom class
     */
 
+    //==================================================================================================================
     // Utility Functions
     protected String getTypeString(int t) {
         switch (t) {
-            case 4: return "Double";
+            case -1: return "Unset";
+            case 0: return "String";
             case 1: return "Integer";
             case 2: return "Character";
             case 3: return "Float";
-            case 7: return "Tuple";
+            case 4: return "Double";
             case 5: return "Boolean";
-            case 8: return Perform.getObjectType(value);
-            case 0: return "String";
-            case -1: return "Unset";
+            case 6: return value.getClass().getSimpleName();
         }
         return "String";
     }
 
+    public Boolean isPrimitive() {
+        if (type==0 || type==1 || type==2 || type==3 || type==4 || type==5) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isNumbers() {
+        if (type==1 || type==3 || type==4) {
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean isText() {
+        if (type==0 || type==2) {
+            return true;
+        }
+        return false;
+    }
+
+    //==================================================================================================================
     // Constructors
     public Const() {}
+    public Const(Var v) {
+        this.value = v.get();
+        this.type = v.getType();
+    }
+    public Const(Const c) {
+        this.value = c.get();
+        this.type = c.getType();
+    }
     public Const (Object value) {
-        if (Perform.getObjectClass(value)=="List" || Perform.getObjectClass(value)=="Var"){
-            System.out.println("Mutable data type in Const not allowed!");
-            return;
-        }
-        switch (Perform.getObjectClass(value)){
+        switch (value.getClass().getSimpleName()){
             case "String" : {
                 this.value = value;
                 type = 0;
@@ -50,14 +79,14 @@ public class Const {
                 type = 1;
                 break;
             }
-            case "Float" : {
-                this.value = value;
-                type = 3;
-                break;
-            }
             case "Character" : {
                 this.value = value;
                 type = 2;
+                break;
+            }
+            case "Float" : {
+                this.value = value;
+                type = 3;
                 break;
             }
             case "Double" : {
@@ -71,12 +100,25 @@ public class Const {
                 break;
             }
             default: {
-                this.value = value;
-                type = 8;
+                if (!value.getClass().getSimpleName().equals("Var") && !value.getClass().getSimpleName().equals("Const")) {
+                    this.value = value;
+                    type = 6;
+                } else {
+                    if (value.getClass().getSimpleName().equals("Var")) {
+                        Var v = (Var) value;
+                        this.value = v.get();
+                        type = v.getType();
+                    } else {
+                        Const c = (Const) value;
+                        this.value = c.get();
+                        type = c.getType();
+                    }
+                }
             }
         }
     }
 
+    //==================================================================================================================
     // getters
     public int getType() {
         return type;
