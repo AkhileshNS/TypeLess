@@ -215,6 +215,98 @@ public class List {
         }
         return -1;
     }
+
+    public void shift() {
+        if (data.size()>0) {
+            data.remove(0);
+        }
+    }
+
+    public void unshift(Object ...objs) {
+        for (int j=objs.length-1;j>=0; j--) {
+            data.add(0, new Var(objs[j]));
+        }
+    }
+
+    public List concat(List list) {
+        return new List(Perform.extend(this), Perform.extend(list));
+    }
+
+    public void set(int i, Object o) {
+        if (i<data.size()) {
+            if (i<0) {
+                i = data.size() - 1 + i;
+            }
+            if (i<data.size()) {
+                data.set(i, new Var(o));
+            }
+        }
+    }
+
+    public void remove(int i) {
+        if (i<data.size()) {
+            if (i<0) {
+                i = data.size() - 1 + i;
+            }
+            if (i<data.size()) {
+                data.remove(i);
+            }
+        }
+    }
+
+    public List slice(int i) {
+        List list = new List();
+        if (i>=data.size() || i<(-data.size())) {
+            return null;
+        }
+        if (i>=0) {
+            for (int j = i + 1; j < data.size(); j++) {
+                list.append(data.get(j).get());
+            }
+        } else {
+            for (int j = data.size() - 1 + i; j >= 0; j--) {
+                list.append(data.get(j).get());
+            }
+        }
+        return list;
+    }
+
+    public List slice(int i, int j) {
+        List list = new List();
+        if (i >= data.size() || i < (-data.size())) {
+            return null;
+        }
+        if (i>=0 && j>=0) {
+            for (int x = i + 1; x <= j; x++) {
+                list.append(data.get(x).get());
+            }
+        }
+        if (i>=0 && j<0) {
+            return null;
+        }
+        if (i<0 && j>=0) {
+            i = data.size() + i;
+            for (int x = j; x<=i; x++) {
+                list.append(data.get(x).get());
+            }
+        }
+        if (j<0 && i<j) {
+            i = data.size() + i;
+            j = data.size() + j;
+            for (int x = j; x<=i; x++) {
+                list.append(data.get(x).get());
+            }
+        }
+        return list;
+    }
+
+    public void reverse() {
+        ArrayList<Var> tempData = new ArrayList<>();
+        for (int j=data.size()-1; j>=0; j--) {
+            tempData.add(data.get(j));
+        }
+        data = new ArrayList<>(tempData);
+    }
     //==================================================================================================================
 
 }
