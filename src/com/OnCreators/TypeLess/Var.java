@@ -4,8 +4,8 @@ public class Var {
 
     //==================================================================================================================
     // internal class variables
-    protected Object value;
-    protected int type = -1;
+    Object value;
+    int type = -1;
     /*
     -1 - Not Used
     0  - String
@@ -19,7 +19,7 @@ public class Var {
 
     //==================================================================================================================
     // Utility Functions
-    protected String getTypeString(int t) {
+    public String getTypeString(int t) {
         switch (t) {
             case -1: return "Unset";
             case 0: return "String";

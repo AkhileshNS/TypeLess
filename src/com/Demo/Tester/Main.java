@@ -1,9 +1,6 @@
 package com.Demo.Tester;
 
-import com.OnCreators.TypeLess.Dictionary;
-import com.OnCreators.TypeLess.List;
-import com.OnCreators.TypeLess.Perform;
-import com.OnCreators.TypeLess.Var;
+import com.OnCreators.TypeLess.*;
 
 import java.lang.*;
 
@@ -25,17 +22,34 @@ public class Main {
         Var value = Perform.operate("$0 + ($1/$0 + ($2*$1 + $3) + $4)", o1, o2, o3, o4, o5);
         Perform.print(value);
 
-        Dictionary d1 = new Dictionary("name", "age", "percentile", "usn");
-        d1.setValues("Akhilesh", 20, 84.8, "1BM16IS009");
+        Dictionary d1 = new Dictionary(
+                "name", "Akhilesh",
+                "age", 20,
+                "percentile", 84.8,
+                "usn", "1BM16IS009"
+        );
         d1.set("LOR", false);
-        d1.getValues().print();
+        d1.print();
         System.out.println("\n" + d1.get("LOR"));
 
         Var obj = new Var("xyz");
         List obj2 = new List(1,2.3,"xyz",true);
         System.out.println(obj2.contains(obj.get()));
 
-        List objs = new List(new List(0, "Akhilesh", 8.48), new List(1, "Anirban", 9.3));
-        objs.print();
+        List l = new List(3, 4, 5);
+        List L = new List(new List(1, 2, 3), new List(4, new List(5), 6), new List(7 ,8 ,9));
+        L.print();
+        System.out.println("\n" + L.get(1, 1, 0));
+        l.getValuesAt(1, 1, 0).print();
+
+        System.out.println("\n");
+
+        Dictionary newDict = new Dictionary(
+                "College", "BMS College of Engineering",
+                Perform.extend(d1),
+                "gender", "male"
+        );
+        newDict.print();
+
     }
 }

@@ -23,13 +23,33 @@ public class Perform {
 
     //==================================================================================================================
     // Extend Feature
-    public static List extend(Object ...objs) {
+    public static List extend(List list) {
         final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
         List values = new List(extendCheck);
-        for (Object o: objs) {
-            values.append(o);
+        for (int i=0; i<list.length(); i++) {
+            values.append(list.get(i));
         }
         return values;
+    }
+    public static List extend(Tuple tuple) {
+        final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
+        List values = new List(extendCheck);
+        for (int i=0; i<tuple.length(); i++) {
+            values.append(tuple.get(i));
+        }
+        return values;
+    }
+    public static Dictionary extend(Dictionary d) {
+        return extendValues(d);
+    }
+    public static List extendKeys(Dictionary d) {
+        final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
+        return new List(extendCheck, extend(d.getKeys()));
+    }
+    public static Dictionary extendValues(Dictionary d) {
+        final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
+        d.set("893e926f-ad86-4e26-9862-634f75c35606", null);
+        return d;
     }
 
     //==================================================================================================================
