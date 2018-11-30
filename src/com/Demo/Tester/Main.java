@@ -37,7 +37,8 @@ public class Main {
         System.out.println(obj2.contains(obj.get()));
 
         List l = new List(3, 4, 5);
-        List L = new List(new List(1, 2, 3), new List(4, new List(5), 6), new List(7 ,8 ,9));
+        List L = new List(l, new List(4, new List(5), 6), new List(7 ,8 ,9));
+        l.shift();
         L.print();
         System.out.println("\n" + L.get(1, 1, 0));
         l.getValuesAt(1, 1, 0).print();
@@ -51,5 +52,13 @@ public class Main {
         );
         newDict.print();
 
+        List list1 = new List(3 ,4 ,5);
+        list1.print();
+        System.out.print("\n");
+        List list2 = new List(1 ,2 ,Perform.extend(list1), 6 ,7 ,8 ,9 ,10);
+        list2.print();
+
+        Tuple t = new Tuple(new Tuple(1, 2, 3));
+        t.print();
     }
 }

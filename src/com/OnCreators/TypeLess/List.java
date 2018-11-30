@@ -20,7 +20,7 @@ public class List {
             if (v==null) {
                 data.add(null);
             } else {
-                data.add(new Var(v.get()));
+                append(v.get());
             }
         }
     }
@@ -31,7 +31,7 @@ public class List {
             if (c==null) {
                 data.add(null);
             } else {
-                data.add(new Var(c.get()));
+                append(c.get());
             }
         }
     }
@@ -52,14 +52,14 @@ public class List {
                             if (s.equals(extendCheck)) {
                                 isExtending = true;
                                 for (int i=1; i<l.length(); i++) {
-                                    data.add(new Var(l.get(i)));
+                                    append(l.get(i));
                                 }
                             }
                         }
                     }
                 }
                 if (!isExtending) {
-                    data.add(new Var(o));
+                    append(o);
                 }
             }
         }
@@ -70,11 +70,15 @@ public class List {
         return data.size();
     }
 
-    public void append(Object i) {
-        if (i==null) {
+    public void append(Object o) {
+        if (o==null) {
             data.add(null);
         } else {
-            data.add(new Var(i));
+            if (o.getClass().getSimpleName().equals("List")) {
+                data.add(new Var(new List(Perform.extend((List) o))));
+            } else {
+                data.add(new Var(o));
+            }
         }
     }
 
@@ -224,7 +228,11 @@ public class List {
 
     public void unshift(Object ...objs) {
         for (int j=objs.length-1;j>=0; j--) {
-            data.add(0, new Var(objs[j]));
+            if (objs[j].getClass().getSimpleName().equals("List")) {
+                data.add(0 ,new Var(new List(Perform.extend((List) objs[j]))));
+            } else {
+                data.add(0, new Var(objs[j]));
+            }
         }
     }
 
@@ -238,7 +246,11 @@ public class List {
                 i = data.size() - 1 + i;
             }
             if (i<data.size()) {
-                data.set(i, new Var(o));
+                if (o.getClass().getSimpleName().equals("List")) {
+                    data.add(new Var(new List(Perform.extend((List) o))));
+                } else {
+                    data.add(new Var(o));
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ public class Tuple {
             if (v==null) {
                 data.add(null);
             } else {
-                data.add(new Const(v.get()));
+                append(v.get());
             }
         }
     }
@@ -31,7 +31,7 @@ public class Tuple {
             if (c==null) {
                 data.add(null);
             } else {
-                data.add(new Const(c.get()));
+                append(c.get());
             }
         }
     }
@@ -52,22 +52,34 @@ public class Tuple {
                             if (s.equals(extendCheck)) {
                                 isExtending = true;
                                 for (int i=1; i<l.length(); i++) {
-                                    data.add(new Const(l.get(i)));
+                                    append(l.get(i));
                                 }
                             }
                         }
                     }
                 }
                 if (!isExtending) {
-                    data.add(new Const(o));
+                    append(o);
                 }
             }
         }
     }
     //==================================================================================================================
-    // List Operations
+    // Tuple Operations
     public int length() {
         return data.size();
+    }
+
+    private void append(Object o) {
+        if (o==null) {
+            data.add(null);
+        } else {
+            if (o.getClass().getSimpleName().equals("Tuple")) {
+                data.add(new Const(new Tuple(Perform.extend((Tuple) o))));
+            } else {
+                data.add(new Const(o));
+            }
+        }
     }
 
     public Tuple getValuesAt(int ...indexes) {
