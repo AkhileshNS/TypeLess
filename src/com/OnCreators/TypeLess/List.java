@@ -76,6 +76,10 @@ public class List {
         } else {
             if (o.getClass().getSimpleName().equals("List")) {
                 data.add(new Var(new List(Perform.extend((List) o))));
+            } else if (o.getClass().getSimpleName().equals("Dictionary")) {
+                data.add(new Var(new Dictionary(Perform.extend((Dictionary) o))));
+            } else if (o.getClass().getSimpleName().equals("Tuple")) {
+                data.add(new Var(new Tuple(Perform.extend((Tuple) o))));
             } else {
                 data.add(new Var(o));
             }
@@ -318,6 +322,14 @@ public class List {
             tempData.add(data.get(j));
         }
         data = new ArrayList<>(tempData);
+    }
+
+    public Object[] toObjectArray() {
+        Object[] objs = new Object[data.size()];
+        for (int i=0; i<objs.length; i++) {
+            objs[i] = data.get(i);
+        }
+        return objs;
     }
     //==================================================================================================================
 

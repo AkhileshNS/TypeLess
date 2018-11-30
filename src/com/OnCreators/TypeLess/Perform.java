@@ -48,8 +48,11 @@ public class Perform {
     }
     public static Dictionary extendValues(Dictionary d) {
         final String extendCheck = "893e926f-ad86-4e26-9862-634f75c35606";
-        d.set("893e926f-ad86-4e26-9862-634f75c35606", null);
-        return d;
+        Dictionary dict = new Dictionary();
+        dict.setKeys(d.getKeys().toObjectArray());
+        dict.setValues(d.getValues().toObjectArray());
+        dict.set(extendCheck, null);
+        return dict;
     }
 
     //==================================================================================================================

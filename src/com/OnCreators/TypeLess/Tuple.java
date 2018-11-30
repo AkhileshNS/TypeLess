@@ -74,7 +74,11 @@ public class Tuple {
         if (o==null) {
             data.add(null);
         } else {
-            if (o.getClass().getSimpleName().equals("Tuple")) {
+            if (o.getClass().getSimpleName().equals("List")) {
+                data.add(new Const(new List(Perform.extend((List) o))));
+            } else if (o.getClass().getSimpleName().equals("Dictionary")) {
+                data.add(new Const(new Dictionary(Perform.extend((Dictionary) o))));
+            } else if (o.getClass().getSimpleName().equals("Tuple")) {
                 data.add(new Const(new Tuple(Perform.extend((Tuple) o))));
             } else {
                 data.add(new Const(o));

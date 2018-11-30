@@ -44,7 +44,7 @@ public class Dictionary {
                     for (Var v: Keys.getList()) {
                         if (!v.get().equals(extendCheck)) {
                             tempKeys.add(v.get());
-                            data.put(v.get(), d.get(v.get()));
+                            set(v.get(), d.get(v.get()));
                             i++;
                         }
                     }
@@ -52,7 +52,7 @@ public class Dictionary {
                 }
             }
             if (!tempKeys.contains(keys.get(i)) && !objects[j].getClass().getSimpleName().equals("Dictionary")) {
-                data.put(keys.get(i), objects[j]);
+                set(keys.get(i), objects[j]);
                 j++;
                 i++;
             }
@@ -87,7 +87,7 @@ public class Dictionary {
                             for (int i=1; i<l.length(); i++) {
                                 if (!keys.contains(l.get(i))) {
                                     keys.add(l.get(i));
-                                    data.put(l.get(i), null);
+                                    set(l.get(i), null);
                                 }
                             }
                         }
@@ -96,7 +96,7 @@ public class Dictionary {
             }
             if (!isExtending && !keys.contains(o)) {
                 keys.add(o);
-                data.put(o, null);
+                set(o, null);
             }
         }
     }
@@ -118,7 +118,9 @@ public class Dictionary {
         ArrayList<Object> Values = new ArrayList<>();
 
         for (Object o: objs) {
-            if (o.getClass().getSimpleName().equals("Dictionary")) {
+            if (o==null) {
+                Values.add(null);
+            } else if (o.getClass().getSimpleName().equals("Dictionary")) {
                 if (((Dictionary) o).hasKey(extendCheck)) {
                     List tempKeys = ((Dictionary) o).getKeys();
                     List tempValues = ((Dictionary) o).getValues();
@@ -140,7 +142,7 @@ public class Dictionary {
 
         for (int i=0; i<Keys.size(); i++) {
             keys.add(Keys.get(i));
-            data.put(Keys.get(i), Values.get(i));
+            set(Keys.get(i), Values.get(i));
         }
 
     }
@@ -153,6 +155,17 @@ public class Dictionary {
                 keys.add(k);
             }
             data.put(k, v);
+            if (v!=null) {
+                if (v.getClass().getSimpleName().equals("Dictionary")) {
+                    data.put(k, new Dictionary(Perform.extend((Dictionary) v)));
+                }
+                if (v.getClass().getSimpleName().equals("List")) {
+                    data.put(k, new List(Perform.extend((List) v)));
+                }
+                if (v.getClass().getSimpleName().equals("Tuple")) {
+                    data.put(k, new Tuple(Perform.extend((Tuple) v)));
+                }
+            }
         }
     }
 
@@ -163,6 +176,15 @@ public class Dictionary {
             }
         }
         return null;
+    }
+
+    public void remove(Object k) {
+        if (k!=null) {
+            if (keys.contains(k)) {
+                keys.remove(k);
+                data.remove(k);
+            }
+        }
     }
     //==================================================================================================================
     // Utility Functions
@@ -180,7 +202,9 @@ public class Dictionary {
                 System.out.print("\t" + o + ": ");
             }
             // Print Value
-            if (data.get(o).getClass().getSimpleName().equals("List")) {
+            if (data.get(o)==null) {
+                System.out.print("null");
+            } else if (data.get(o).getClass().getSimpleName().equals("List")) {
                 ((List) data.get(o)).print();
             } else if (data.get(o).getClass().getSimpleName().equals("Tuple")) {
                 ((Tuple) data.get(o)).print();
